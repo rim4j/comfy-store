@@ -10,6 +10,7 @@ import {
   Cart,
   Checkout,
   Orders,
+  About,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <Checkout /> },
       { path: "orders", element: <Orders /> },
+      { path: "about", element: <About /> },
     ],
   },
   { path: "/login", element: <Login />, errorElement: <Error /> },
@@ -33,7 +35,7 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <div data-theme='dark'>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </div>
   );
 };
