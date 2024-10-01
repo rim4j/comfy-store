@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import { Header } from "../components";
 
 const HomeLayout = () => {
   return (
     <div>
-      <h1>home layout</h1>
+      <Header />
       <section className='align-element py-20'>
         <Outlet />
       </section>
