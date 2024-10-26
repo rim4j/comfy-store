@@ -1,4 +1,6 @@
+import { useDispatch } from "react-redux";
 import { formatPrice, generateAmountOptions } from "../utils";
+import { removeItem, editItem } from "../features/cart/cartSlice";
 
 const CartItem = ({
   amount,
@@ -7,9 +9,18 @@ const CartItem = ({
   image,
   price,
   productColor,
-  productID,
   title,
 }) => {
+  const dispatch = useDispatch();
+
+  const removeItemFromCart = () => {
+    dispatch(removeItem({ cartID }));
+  };
+
+  const handleAmount = (e) => {
+    dispatch(editItem({ cartID, amount: parseInt(e.target.value) }));
+  };
+
   return (
     <article
       className='mb-12 flex flex-col gap-y-4 sm:flex-row flex-wrap border-b border-base-300 pb-6 last:border-b-0'
@@ -42,11 +53,16 @@ const CartItem = ({
             name='amount'
             id='amount'
             className='mt-2 select select-base select-bordered select-xs'
+            value={amount}
+            onChange={handleAmount}
           >
             {generateAmountOptions(amount + 5)}
           </select>
         </div>
-        <button className='mt-2 link link-primary link-hover text-sm'>
+        <button
+          onClick={removeItemFromCart}
+          className='mt-2 link link-primary link-hover text-sm'
+        >
           Remove
         </button>
       </div>
